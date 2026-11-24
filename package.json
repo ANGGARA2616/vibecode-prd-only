@@ -1,0 +1,18 @@
+{
+  "name": "ngekost-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=web",
+    "build": "npm run build --workspace=web",
+    "start": "npm run start --workspace=web",
+    "lint": "npm run lint --workspace=web",
+    "test:e2e": "node test-prototype.js"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.65.1"
+  }
+}

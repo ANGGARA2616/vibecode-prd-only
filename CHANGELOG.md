@@ -9,6 +9,13 @@ Format penulisan berpedoman pada [Keep a Changelog](https://keepachangelog.com/i
 
 ---
 
+## [0.2.0] - 2026-11-24
+
+### Added
+- Konfigurasi monorepo dengan root `package.json` workspaces (`apps/*`).
+- Inisialisasi proyek Next.js 14 (App Router) + TypeScript + Tailwind CSS pada direktori `apps/web`.
+- Instalasi dependensi: Next.js, React, Tailwind CSS, Lucide React, clsx, tailwind-merge.
+
 ## [0.1.0] - 2026-11-24
 
 ### Added
