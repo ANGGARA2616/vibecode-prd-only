@@ -9,6 +9,16 @@ Format penulisan berpedoman pada [Keep a Changelog](https://keepachangelog.com/i
 
 ---
 
+## [0.3.0] - 2026-11-24
+
+### Added
+- Model data TypeScript (`Room`, `Property`, `MassGeneratorParams`, `RoomDraft`, `DuplicateParams`).
+- Konstanta 8 fasilitas standar Ngekost (`AC`, `Kamar Mandi Dalam`, `Wifi`, `Lemari`, `Kasur`, `Meja Belajar`, `TV`, `Dapur`) dan 4 tipe kamar (`STANDARD`, `DELUXE`, `VIP`, `EXCLUSIVE`).
+- Generator penomoran otomatis dengan penghitungan rentang nomor dan chip pratinjau dinamis (FR-02, FR-03).
+- Validasi keunikan nomor kamar terhadap data properti lokal dan batch input (FR-04).
+- Algoritma auto-koreksi nomor kamar yang bentrok (FR-05).
+- Modul persistensi data berbasis `localStorage` dengan *mock seed data* 4 kamar awal dan opsi *clear/reset* (FR-08).
+
 ## [0.2.0] - 2026-11-24
 
 ### Added
