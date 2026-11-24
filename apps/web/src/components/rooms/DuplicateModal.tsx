@@ -30,6 +30,27 @@ export function DuplicateModal({
   // Editable custom room numbers
   const [customNumbers, setCustomNumbers] = useState<string[]>(['105', '106']);
 
+  // Auto-calculate non-conflicting numbers when sourceRoom or modal opens
+  React.useEffect(() => {
+    if (!sourceRoom || !isOpen) return;
+    const match = sourceRoom.roomNumber.match(/^([A-Za-z\-_\s]*)(\d+)$/);
+    const p = match ? match[1] : '';
+    const num = match ? parseInt(match[2], 10) : 100;
+    setPrefix(p);
+
+    const existing = new Set(existingRooms.map((r) => r.roomNumber.trim().toUpperCase()));
+    const generated: string[] = [];
+    let cur = num + 1;
+    while (generated.length < count) {
+      const candidate = `${p}${cur}`;
+      if (!existing.has(candidate.toUpperCase())) {
+        generated.push(candidate);
+      }
+      cur++;
+    }
+    setCustomNumbers(generated);
+  }, [sourceRoom, isOpen]);
+
   // Handle count change
   const handleCountChange = (val: number) => {
     const safeCount = Math.max(1, Math.min(20, val));
@@ -245,8 +266,10 @@ export function DuplicateModal({
               Batal
             </button>
             <button
-              type="submit"
+              type="button"
+              id="btn-submit-duplicate"
               disabled={hasDuplicate}
+              onClick={handleSubmit}
               className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl font-bold text-xs text-white shadow-md transition-all ${
                 hasDuplicate
                   ? 'bg-slate-300 cursor-not-allowed opacity-60'

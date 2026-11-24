@@ -43,6 +43,7 @@ export function SuccessModal({
         <div className="flex flex-col gap-2.5">
           <button
             type="button"
+            id="btn-view-rooms-success"
             onClick={onViewRooms}
             className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-md transition-all hover:shadow-lg"
           >

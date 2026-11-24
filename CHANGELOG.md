@@ -9,6 +9,14 @@ Format penulisan berpedoman pada [Keep a Changelog](https://keepachangelog.com/i
 
 ---
 
+## [0.5.0] - 2026-11-24
+
+### Added
+- Penambahan skrip pengujian end-to-end terotomatisasi (`test-app-e2e.js`) menggunakan Playwright untuk memverifikasi 8 layar antarmuka secara end-to-end.
+- Verifikasi hasil pengujian: 100% alur berhasil dilalui tanpa galat konsol (0 error).
+- Penambahan aset ikon favicon `apps/web/src/app/icon.svg` untuk mencegah galat 404 pada pemanggilan browser.
+- Peningkatan reaktivitas pada `DuplicateModal` dengan kalkulasi otomatis nomor urut kamar tanpa bentrok.
+
 ## [0.4.0] - 2026-11-24
 
 ### Added
