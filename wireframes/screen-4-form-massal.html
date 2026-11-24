@@ -1,0 +1,538 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #F1F5F9;
+    color: #0F172A;
+    font-size: 13px;
+    line-height: 1.4;
+    overflow-x: hidden;
+  }
+  .app-shell { display: flex; min-height: 820px; width: 1280px; }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 240px;
+    background: #1E293B;
+    color: #94A3B8;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 18px 12px;
+    border-right: 1px solid #0F172A;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px 20px 12px;
+    border-bottom: 1px solid #334155;
+    margin-bottom: 16px;
+  }
+  .brand-logo {
+    width: 28px;
+    height: 28px;
+    background: #3B82F6;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+  }
+  .brand-title { color: #FFFFFF; font-weight: 700; font-size: 15px; letter-spacing: -0.2px; }
+  .brand-subtitle { font-size: 10.5px; color: #64748B; }
+  
+  .nav-group { display: flex; flex-direction: column; gap: 3px; }
+  .nav-label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: #64748B; padding: 10px 12px 4px; letter-spacing: 0.5px; }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #94A3B8;
+    font-size: 12.5px;
+    font-weight: 500;
+  }
+  .nav-item.active { background: #334155; color: #FFFFFF; font-weight: 600; }
+  .nav-badge { background: #475569; color: #F8FAFC; font-size: 10.5px; padding: 1px 7px; border-radius: 10px; font-weight: 600; }
+  .nav-badge.danger { background: #DC2626; color: #FFFFFF; }
+
+  /* Main Area */
+  .main-area { flex: 1; display: flex; flex-direction: column; background: #F8FAFC; }
+  .top-header {
+    height: 56px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; }
+  .header-breadcrumb { font-size: 12.5px; color: #64748B; display: flex; align-items: center; gap: 6px; }
+  .header-breadcrumb strong { color: #0F172A; }
+  .header-user { display: flex; align-items: center; gap: 10px; }
+  .user-avatar { width: 32px; height: 32px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #334155; font-size: 12px; }
+
+  /* Content Body */
+  .content { padding: 24px 28px; flex: 1; }
+  
+  /* Buttons & Controls */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-primary { background: #0F172A; color: #FFFFFF; }
+  .btn-accent { background: #2563EB; color: #FFFFFF; }
+  .btn-outline { background: #FFFFFF; border-color: #CBD5E1; color: #334155; }
+  .btn-outline:hover { background: #F1F5F9; }
+  .btn-danger { background: #EF4444; color: #FFFFFF; }
+  .btn-sm { padding: 4px 10px; font-size: 11.5px; border-radius: 6px; }
+
+  /* Annotation Badge */
+  .anno {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: #EA580C;
+    color: #FFFFFF;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 800;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    vertical-align: middle;
+    margin: 0 3px;
+    flex-shrink: 0;
+  }
+
+  /* Cards & Widgets */
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .prop-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .hero-meta { display: flex; align-items: center; gap: 24px; }
+  .hero-stat { text-align: center; }
+  .hero-stat-val { font-size: 20px; font-weight: 800; color: #0F172A; line-height: 1.1; }
+  .hero-stat-lbl { font-size: 11px; color: #64748B; margin-top: 2px; }
+
+  /* Rooms Grid */
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .room-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 14px;
+    position: relative;
+  }
+  .room-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .room-type-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; color: #64748B; letter-spacing: 0.5px; }
+  .status-badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10.5px;
+    font-weight: 600;
+  }
+  .status-vacant { background: #F1F5F9; color: #475569; }
+  .status-occupied { background: #E2E8F0; color: #1E293B; }
+  .room-number { font-size: 22px; font-weight: 800; color: #0F172A; letter-spacing: -0.5px; }
+  .room-price { font-size: 13px; font-weight: 700; color: #334155; margin-top: 4px; }
+  .room-price span { font-size: 11px; font-weight: 400; color: #64748B; }
+  .room-actions { margin-top: 10px; padding-top: 8px; border-top: 1px dashed #E2E8F0; display: flex; justify-content: space-between; align-items: center; }
+
+  /* Modal Backdrop */
+  .modal-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+  }
+  .modal-box {
+    background: #FFFFFF;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border: 1px solid #CBD5E1;
+    overflow: hidden;
+  }
+  .modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal-title { font-size: 16px; font-weight: 700; color: #0F172A; }
+  .modal-body { padding: 20px; max-height: 700px; overflow-y: auto; }
+  .modal-footer {
+    padding: 14px 20px;
+    border-top: 1px solid #E2E8F0;
+    background: #F8FAFC;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  /* Form Elements */
+  .form-section {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .form-section-title { font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 3px; }
+  .form-section-desc { font-size: 11.5px; color: #64748B; margin-bottom: 12px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-group { display: flex; flex-direction: column; gap: 4px; }
+  .form-group.full { grid-column: span 2; }
+  .form-label { font-size: 12px; font-weight: 600; color: #334155; }
+  .form-input {
+    height: 34px;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    padding: 0 10px;
+    font-size: 12.5px;
+    color: #0F172A;
+    background: #FFFFFF;
+  }
+  .form-input:focus { border-color: #2563EB; outline: none; }
+  .chips-container { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    padding: 5px 12px;
+    border-radius: 16px;
+    border: 1px solid #CBD5E1;
+    background: #FFFFFF;
+    color: #475569;
+    font-size: 11.5px;
+    font-weight: 500;
+  }
+  .chip.active { background: #E2E8F0; border-color: #475569; color: #0F172A; font-weight: 700; }
+  .chips-preview { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .chip-num {
+    padding: 3px 8px;
+    background: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  /* Table */
+  .table-container {
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #FFFFFF;
+  }
+  table { width: 100%; border-collapse: collapse; text-align: left; }
+  th {
+    background: #F8FAFC;
+    color: #475569;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #E2E8F0;
+  }
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #F1F5F9;
+    font-size: 12px;
+    color: #334155;
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  .tr-error { background: #FEF2F2 !important; }
+  .tr-error td { border-bottom: 1px solid #FECACA; }
+  .input-table {
+    height: 28px;
+    padding: 0 8px;
+    border: 1px solid #CBD5E1;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    width: 85px;
+  }
+  .input-table.error { border-color: #EF4444; background: #FFF; color: #B91C1C; }
+  .error-hint { font-size: 10.5px; color: #DC2626; font-weight: 600; margin-top: 2px; }
+
+  /* Alert Banner */
+  .alert-banner {
+    padding: 12px 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
+  .alert-danger { background: #FEF2F2; border: 1px solid #FCA5A5; color: #991B1B; }
+
+  /* Progress & Empty */
+  .empty-box {
+    border: 2px dashed #CBD5E1;
+    border-radius: 12px;
+    padding: 50px 20px;
+    text-align: center;
+    background: #FFFFFF;
+  }
+  .progress-bar-bg {
+    width: 100%;
+    height: 10px;
+    background: #E2E8F0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 14px 0 8px;
+  }
+  .progress-bar-fill { height: 100%; background: #0F172A; border-radius: 5px; }
+</style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="brand">
+          <div class="brand-logo">N</div>
+          <div>
+            <div class="brand-title">Ngekost</div>
+            <div class="brand-subtitle">Dashboard Pengelola</div>
+          </div>
+        </div>
+        
+        <div class="nav-group">
+          <div class="nav-label">Menu Utama</div>
+          <div class="nav-item ">
+            <span>Dashboard</span>
+          </div>
+          <div class="nav-item active">
+            <span>Properti</span>
+            <span class="nav-badge">3</span>
+          </div>
+          <div class="nav-item">
+            <span>Penghuni</span>
+            <span class="nav-badge">14</span>
+          </div>
+          <div class="nav-item">
+            <span>Tagihan</span>
+            <span class="nav-badge danger">2</span>
+          </div>
+          <div class="nav-item">
+            <span>Verifikasi Bukti</span>
+            <span class="nav-badge danger">1</span>
+          </div>
+          <div class="nav-item">
+            <span>Komplain</span>
+          </div>
+          <div class="nav-item">
+            <span>Laporan</span>
+          </div>
+        </div>
+
+        <div class="nav-group" style="margin-top: auto;">
+          <div class="nav-label">Pengaturan</div>
+          <div class="nav-item"><span>Profil &amp; Akun</span></div>
+          <div class="nav-item"><span>Rekening &amp; QRIS</span></div>
+          <div class="nav-item"><span>Template WA</span></div>
+        </div>
+      </div>
+
+      <!-- Main Area -->
+      <div class="main-area">
+        <div class="top-header">
+          <div class="header-left">
+            <div class="header-breadcrumb">Properti &gt; Kost Griya Amartha &gt; <strong>Tambah Kamar Massal</strong></div>
+          </div>
+          <div class="header-user">
+            <span style="font-size: 12px; color: #475569;">Muhammad Anggara</span>
+            <div class="user-avatar">MA</div>
+          </div>
+        </div>
+
+        <div class="content">
+          
+    <!-- Header Page Form -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <div>
+        <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #64748B;">Alur Tambah Massal</div>
+        <h1 style="font-size: 18px; font-weight: 800; color: #0F172A; margin-top: 2px;">Tambah Kamar Sekaligus (Massal)</h1>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <button class="btn btn-outline btn-sm">Batal</button>
+      </div>
+    </div>
+
+    <!-- Layout Form 2 Kolom -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      
+      <!-- Kolom Kiri: Spesifikasi Kamar & Harga -->
+      <div>
+        <!-- Section 1: Info & Tipe Kamar -->
+        <div class="form-section">
+          <div class="form-section-title">
+            <span class="anno">1</span> 1. Spesifikasi Kamar Sejenis
+          </div>
+          <div class="form-section-desc">Pilih tipe dan fasilitas yang berlaku seragam untuk seluruh kamar yang dibuat.</div>
+          
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Tipe Kamar *</label>
+              <select class="form-input">
+                <option selected>Standard</option>
+                <option>Deluxe</option>
+                <option>VIP</option>
+                <option>Exclusive</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Lantai Kamar</label>
+              <input type="number" class="form-input" value="1" placeholder="Contoh: 1">
+            </div>
+
+            <div class="form-group full">
+              <label class="form-label">
+                <span class="anno">2</span> Fasilitas Kamar (Toggle untuk memilih)
+              </label>
+              <div class="chips-container">
+                <div class="chip active">✓ AC</div>
+                <div class="chip active">✓ Kamar Mandi Dalam</div>
+                <div class="chip active">✓ Wifi</div>
+                <div class="chip active">✓ Kasur</div>
+                <div class="chip active">✓ Lemari</div>
+                <div class="chip">Meja Belajar</div>
+                <div class="chip">TV</div>
+                <div class="chip">Dapur</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Tarif Sewa Bulanan -->
+        <div class="form-section">
+          <div class="form-section-title">
+            <span class="anno">3</span> 2. Tarif Sewa
+          </div>
+          <div class="form-section-desc">Harga dasar bulanan dan skema tarif jangka panjang seragam.</div>
+          
+          <div class="form-group">
+            <label class="form-label">Harga Dasar (Sewa 1 Bulan) *</label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 10px; top: 8px; color: #64748B; font-weight: 700;">Rp</span>
+              <input type="text" class="form-input" value="1.500.000" style="padding-left: 36px; font-weight: 700;">
+            </div>
+          </div>
+
+          <div style="margin-top: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px 12px; font-size: 11.5px; color: #64748B;">
+            ℹ️ Diskon 3 bulan, 6 bulan, dan 1 tahun dapat diatur otomatis atau dikoreksi kemudian.
+          </div>
+        </div>
+      </div>
+
+      <!-- Kolom Kanan: Generator Penomoran Otomatis -->
+      <div>
+        <div class="form-section" style="border: 2px solid #0F172A;">
+          <div class="form-section-title" style="display: flex; justify-content: space-between; align-items: center;">
+            <span><span class="anno">4</span> 3. Generator Penomoran Otomatis</span>
+            <span style="background: #0F172A; color: #FFF; font-size: 10px; padding: 2px 7px; border-radius: 6px;">AUTO</span>
+          </div>
+          <div class="form-section-desc">Tentukan jumlah unit dan pola urutan penomoran kamar otomatis.</div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Jumlah Kamar Ditambahkan *</label>
+              <input type="number" class="form-input" value="8" style="font-weight: 700; font-size: 14px;">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Awalan Nomor (Prefix)</label>
+              <input type="text" class="form-input" value="10" placeholder="Contoh: 10 atau A-">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Nomor Mulai (Urutan Awal) *</label>
+              <input type="number" class="form-input" value="1" placeholder="1">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Rentang Nomor Terhitung</label>
+              <input type="text" class="form-input" value="101 – 108" readonly style="background: #F1F5F9; font-weight: 700; color: #0F172A;">
+            </div>
+          </div>
+
+          <!-- Pratinjau Nomor Otomatis -->
+          <div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed #E2E8F0;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <label class="form-label">
+                <span class="anno">5</span> Pratinjau Daftar Nomor yang Akan Dibuat:
+              </label>
+              <span style="font-size: 11px; color: #64748B;">Total 8 kamar</span>
+            </div>
+            
+            <div class="chips-preview">
+              <span class="chip-num">101</span>
+              <span class="chip-num">102</span>
+              <span class="chip-num">103</span>
+              <span class="chip-num">104</span>
+              <span class="chip-num">105</span>
+              <span class="chip-num">106</span>
+              <span class="chip-num">107</span>
+              <span class="chip-num">108</span>
+            </div>
+            <p style="font-size: 11px; color: #64748B; margin-top: 8px;">
+              * Nomor kamar individual tetap dapat diubah atau dihapus pada layar ringkasan berikutnya.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tombol Aksi Form -->
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px;">
+          <button class="btn btn-outline" style="padding: 9px 18px;">Batal</button>
+          <button class="btn btn-primary" style="padding: 9px 20px;">
+            <span class="anno">6</span> Lanjut ke Pratinjau &amp; Ringkasan →
+          </button>
+        </div>
+      </div>
+    </div>
+  
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
+  
