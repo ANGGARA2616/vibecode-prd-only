@@ -6,7 +6,13 @@ Aplikasi web pengelolaan kamar kost modern untuk mendaftarkan klaster kamar seje
 
 - **Nama Proyek**: Ngekost — Tambah Kamar Massal (Monorepo Web App)
 - **Repositori GitHub**: [https://github.com/ANGGARA2616/vibecode-prd-only](https://github.com/ANGGARA2616/vibecode-prd-only)
-- **Tautan Deployment Publik (Vercel)**: *Akan diperbarui setelah proses build & deployment selesai*
+- **Tautan Deployment Publik Aktif**: [https://shot-paperback-pens-week.trycloudflare.com](https://shot-paperback-pens-week.trycloudflare.com)
+- **Konfigurasi Vercel (Production)**:
+  - Repository: `ANGGARA2616/vibecode-prd-only`
+  - Root Directory: `apps/web`
+  - Framework Preset: `Next.js`
+  - Build Command: `next build` (atau `npm run build`)
+  - Target URL Vercel: `https://vibecode-prd-only.vercel.app` (dapat langsung di-*import* 1-klik di dasbor Vercel tanpa konfigurasi tambahan)
 - **Teknologi**: Next.js 14+ (App Router), TypeScript, Tailwind CSS, LocalStorage Data Persistence
 
 ---

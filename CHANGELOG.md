@@ -9,6 +9,23 @@ Format penulisan berpedoman pada [Keep a Changelog](https://keepachangelog.com/i
 
 ---
 
+## [1.0.0] - 2026-11-24
+
+### Added
+- Deployment publik aktif melalui tunneling Cloudflare publik SSL yang dapat diakses langsung tanpa autentikasi login: `https://shot-paperback-pens-week.trycloudflare.com`.
+- Skrip verifikasi deployment publik (`test-public-deployment.js`) yang menguji 7 langkah alur utama (Daftar Kamar, Modal Metode, Form Massal, Generator Penomoran, Tabel Ringkasan, Penyimpanan Batch, dan Pembaruan Daftar) dengan hasil 100% lulus dan 0 galat konsol.
+- Konfigurasi Vercel monorepo (`vercel.json` dan `apps/web/vercel.json`) dengan target `apps/web` untuk kemudahan impor 1-klik di dasbor Vercel.
+- Pembuatan dan sinkronisasi repositori GitHub publik: [https://github.com/ANGGARA2616/vibecode-prd-only](https://github.com/ANGGARA2616/vibecode-prd-only).
+
+### Changed
+- Pembaruan `README.md` pada seksi tautan deployment dengan alamat publik aktif dan panduan impor Vercel.
+
+### Assumptions
+- **Penyimpanan Lokal untuk Prototipe MVP**: Seluruh penambahan, penghapusan, dan duplikasi kamar dipersistensikan secara client-side via `localStorage` pada peramban per sesi pengujian.
+- **Keseragaman Spesifikasi dalam Satu Batch**: Parameter tipe, fasilitas, lantai dasar, dan harga sewa diterapkan merata pada setiap kamar dalam batch yang sama; penyesuaian khusus diselesaikan langsung di tabel ringkasan pra-simpan.
+- **Validasi Keunikan Nomor Kamar**: Penomoran kamar wajib unik dalam cakupan properti yang sama, baik terhadap unit kamar eksisting maupun antar baris dalam daftar input batch saat ini.
+- **Deployment Publik**: Menggunakan reverse tunnel terenkripsi SSL dengan domain publik Cloudflare (`.trycloudflare.com`) untuk akses instan tanpa pembatasan login, berdampingan dengan konfigurasi Vercel App Router untuk deployment permanen.
+
 ## [0.5.0] - 2026-11-24
 
 ### Added
