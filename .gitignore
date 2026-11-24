@@ -1,0 +1,28 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Testing & Artifacts
+coverage
+*.lcov
+.nyc_output
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Vercel
+.vercel
+
+# Temporary and Lock Files
+~$*
+*.tmp
+*.log
+surge_token.json
+
+# OS files
+.DS_Store
+Thumbs.db
