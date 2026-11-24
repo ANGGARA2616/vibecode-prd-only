@@ -9,6 +9,20 @@ Format penulisan berpedoman pada [Keep a Changelog](https://keepachangelog.com/i
 
 ---
 
+## [0.4.0] - 2026-11-24
+
+### Added
+- Implementasi penuh 8 layar antarmuka sesuai arsitektur wireframe Worksheet 12 dan PRD:
+  - **Screen 1**: Daftar Kamar dengan hero stats properti, grid kartu kamar, badge status terisi/kosong, dan tombol aksi "Duplikat".
+  - **Screen 2**: Empty State edukatif untuk properti 0 kamar dengan tombol CTA primer langsung ke penambahan massal.
+  - **Screen 3**: Modal dialog "Pilih Cara Menambah Kamar" (Tambah Kamar Massal, Duplikat dari Kamar Eksisting, Tambah Satu Kamar).
+  - **Screen 4**: Form Tambah Kamar Massal dengan 2 kolom (spesifikasi seragam tipe/lantai/8 fasilitas/harga, dan generator penomoran otomatis dengan rentang serta chip pratinjau dinamis).
+  - **Screen 5**: Pratinjau & Ringkasan dalam wujud tabel data interaktif dengan fitur in-place inline edit nomor kamar dan hapus baris satuan.
+  - **Screen 6**: Error State deteksi nomor kembar dengan spanduk peringatan deskriptif, sorotan merah pada baris bentrok, penonaktifan tombol simpan, dan tombol auto-koreksi.
+  - **Screen 7**: Modal progres simpan animasi (7A: progress bar 0% s.d. 100%) dan modal konfirmasi sukses (7B: tajuk jumlah kamar berhasil ditambahkan).
+  - **Screen 8**: Modal "Duplikat Kamar" dari kartu kamar acuan dengan kisi nomor kamar baru yang dapat langsung disunting.
+- Bilah kontrol pengujian prototipe pada hero properti (Simulasi Empty State, Uji Error Nomor Kembar, Reset Data Bawaan).
+
 ## [0.3.0] - 2026-11-24
 
 ### Added
